@@ -1,0 +1,95 @@
+import React, { ReactElement } from 'react';
+import clsx from 'clsx';
+import {
+  AppBar,
+  Badge,
+  Button,
+  Grid,
+  IconButton,
+  InputBase,
+  Toolbar,
+  Tooltip,
+  Typography,
+} from '@material-ui/core';
+import { AccountCircle, Search, Work } from '@material-ui/icons';
+import Menu from './components/Menu';
+import WorkWidget from './components/WorkWidget';
+import { useClasses } from './styles';
+
+const Header = (): ReactElement => {
+  const classes = useClasses();
+
+  return (
+    <Grid className={classes.header}>
+      <AppBar position="static" className={classes.topBar}>
+        <Toolbar className={classes.toolBar}>
+          <Grid container classes={{ root: classes.gridContainer }}>
+            <Typography variant="h6" color="primary">
+              Mint art
+            </Typography>
+            <Menu />
+          </Grid>
+          <Grid container classes={{ root: classes.gridContainer }}>
+            <div className={classes.search}>
+              <div className={classes.searchIcon}>
+                <Search />
+              </div>
+              <InputBase
+                placeholder="Search…"
+                classes={{
+                  root: classes.inputRoot,
+                  input: classes.inputInput,
+                }}
+                inputProps={{ 'aria-label': 'search' }}
+              />
+            </div>
+            <Tooltip
+              title={<WorkWidget />}
+              interactive
+              arrow
+              classes={{
+                tooltip: classes.widget,
+                arrow: classes.widgetArrow,
+                tooltipPlacementBottom: classes.widgetMargin,
+              }}
+            >
+              <IconButton className={classes.icon}>
+                <Badge
+                  className={classes.badge}
+                  badgeContent="×"
+                  overlap="circle"
+                  anchorOrigin={{
+                    vertical: 'bottom',
+                    horizontal: 'right',
+                  }}
+                >
+                  <Work />
+                </Badge>
+              </IconButton>
+            </Tooltip>
+            <Tooltip
+              title="Account"
+              interactive
+              arrow
+              classes={{
+                tooltip: classes.widget,
+                arrow: classes.widgetArrow,
+                tooltipPlacementBottom: classes.widgetMargin,
+              }}
+            >
+              <IconButton className={clsx(classes.icon, classes.account)}>
+                <AccountCircle />
+              </IconButton>
+            </Tooltip>
+
+            <Button color="primary" variant="contained" disableElevation>
+              Upload
+            </Button>
+          </Grid>
+        </Toolbar>
+      </AppBar>
+    </Grid>
+  );
+};
+
+export default Header;
