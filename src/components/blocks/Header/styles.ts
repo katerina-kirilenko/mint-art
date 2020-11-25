@@ -87,9 +87,6 @@ export const useClasses = makeStyles((theme: Theme) => ({
   },
   widget: {
     backgroundColor: '#fff',
-    fontSize: '1rem',
-    lineHeight: '1.2rem',
-    padding: '26px 20px 20px',
     borderRadius: '8px',
     boxShadow: '0px 10px 50px rgba(0,0,0,0.15)',
     maxWidth: 'inherit',
@@ -99,5 +96,15 @@ export const useClasses = makeStyles((theme: Theme) => ({
   },
   widgetMargin: {
     margin: '10px 0',
+  },
+  workWidget: {
+    fontSize: '1rem',
+    lineHeight: '1rem',
+    padding: '26px 20px 20px',
+  },
+  accountWidget: {
+    fontSize: '1rem',
+    lineHeight: '1.2rem',
+    padding: '0',
   },
 }));

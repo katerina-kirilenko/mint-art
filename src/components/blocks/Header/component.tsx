@@ -14,6 +14,7 @@ import {
 import { AccountCircle, Search, Work } from '@material-ui/icons';
 import Menu from './components/Menu';
 import WorkWidget from './components/WorkWidget';
+import AccountMenu from './components/AccountMenu';
 import { useClasses } from './styles';
 
 const Header = (): ReactElement => {
@@ -48,7 +49,7 @@ const Header = (): ReactElement => {
               interactive
               arrow
               classes={{
-                tooltip: classes.widget,
+                tooltip: clsx(classes.widget, classes.workWidget),
                 arrow: classes.widgetArrow,
                 tooltipPlacementBottom: classes.widgetMargin,
               }}
@@ -68,11 +69,11 @@ const Header = (): ReactElement => {
               </IconButton>
             </Tooltip>
             <Tooltip
-              title="Account"
+              title={<AccountMenu />}
               interactive
               arrow
               classes={{
-                tooltip: classes.widget,
+                tooltip: clsx(classes.widget, classes.accountWidget),
                 arrow: classes.widgetArrow,
                 tooltipPlacementBottom: classes.widgetMargin,
               }}

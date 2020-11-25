@@ -36,5 +36,15 @@ export const materialTheme = createMuiTheme({
     MuiButton: {
       root: { borderRadius: '8px', textTransform: 'none' },
     },
+    MuiTooltip: {
+      tooltip: {
+        color: '#1f2833',
+      },
+    },
+    MuiGrid: {
+      container: {
+        alignItems: 'center',
+      },
+    },
   },
 });
