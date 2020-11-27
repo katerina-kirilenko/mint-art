@@ -6,7 +6,7 @@ import {
   Button,
   Grid,
   IconButton,
-  InputBase,
+  InputAdornment,
   Toolbar,
   Tooltip,
   Typography,
@@ -15,6 +15,7 @@ import { AccountCircle, Search, Work } from '@material-ui/icons';
 import Menu from './components/Menu';
 import WorkWidget from './components/WorkWidget';
 import AccountMenu from './components/AccountMenu';
+import InputText from 'components/controls/InputText';
 import { useClasses } from './styles';
 
 const Header = (): ReactElement => {
@@ -32,16 +33,14 @@ const Header = (): ReactElement => {
           </Grid>
           <Grid container classes={{ root: classes.gridContainer }}>
             <div className={classes.search}>
-              <div className={classes.searchIcon}>
-                <Search />
-              </div>
-              <InputBase
+              <InputText
                 placeholder="Search…"
-                classes={{
-                  root: classes.inputRoot,
-                  input: classes.inputInput,
-                }}
-                inputProps={{ 'aria-label': 'search' }}
+                icon={
+                  <InputAdornment position="start">
+                    <Search />
+                  </InputAdornment>
+                }
+                className={classes.input}
               />
             </div>
             <Tooltip

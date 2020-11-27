@@ -79,7 +79,7 @@ const WorkModal = ({ isOpen, close }: WorkModalProps): ReactElement => {
         </DialogContent>
       </div>
 
-      <div className={classes.modalContent}>
+      <div>
         {accordionItems.map(({ id, name, label, component, required }) => {
           return (
             <Accordion

@@ -48,41 +48,12 @@ export const useClasses = makeStyles((theme: Theme) => ({
       width: 'auto',
     },
   },
-  searchIcon: {
-    padding: '0px 10px',
-    height: '100%',
-    position: 'absolute',
-    pointerEvents: 'none',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
+  input: {
+    '& input': {
+      paddingLeft: '4px',
+    },
     '& svg': {
       fill: theme.palette.grey[500],
-    },
-  },
-  inputRoot: {
-    borderRadius: '8px',
-    color: theme.palette.grey[700],
-    border: `1px solid ${theme.palette.grey[300]}`,
-    transition: theme.transitions.create('all'),
-    '&:hover': {
-      boxShadow: `0 0 0 4px ${fade(theme.palette.primary.main, 0.1)}`,
-    },
-    '&:focus': {
-      border: 'none',
-    },
-  },
-  inputInput: {
-    borderRadius: '8px',
-    padding: theme.spacing(0.8, 1, 0.8, 5.4),
-    width: '100%',
-    border: '1px solid transparent',
-    [theme.breakpoints.up('sm')]: {
-      width: '16ch',
-      '&:focus': {
-        border: `1px solid ${theme.palette.primary.light}`,
-        boxShadow: `0 0 0 4px ${fade(theme.palette.primary.main, 0.1)}`,
-      },
     },
   },
   widget: {

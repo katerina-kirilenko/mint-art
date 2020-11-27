@@ -9,11 +9,6 @@ export const useClasses = makeStyles((theme: Theme) => ({
   modalHeader: {
     marginBottom: '20px',
   },
-  modalContent: {
-    '&& div': {
-      marginBottom: 0,
-    },
-  },
   modalFooter: {
     borderTop: `1px solid #e7e7e9`,
     padding: '16px',
@@ -45,6 +40,7 @@ export const useClasses = makeStyles((theme: Theme) => ({
     },
   },
   accordion: {
+    marginBottom: 0,
     boxShadow: 'none',
     '&::before': {
       height: 0,

@@ -46,5 +46,12 @@ export const materialTheme = createMuiTheme({
         alignItems: 'center',
       },
     },
+    MuiDialog: {
+      paper: {
+        '&::-webkit-scrollbar': {
+          display: 'none',
+        },
+      },
+    },
   },
 });
