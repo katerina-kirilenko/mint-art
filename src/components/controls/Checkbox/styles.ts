@@ -17,6 +17,9 @@ export const useClasses = makeStyles((theme: Theme) => ({
     border: `1px solid ${theme.palette.grey[300]}`,
     outline: 'none',
     transition: 'box-shadow 200ms ease, background 200ms ease, border 200ms ease',
+    '&:hover': {
+      borderColor: theme.palette.primary.main,
+    },
   },
   checkedIcon: {
     background: theme.palette.primary.main,
@@ -25,6 +28,9 @@ export const useClasses = makeStyles((theme: Theme) => ({
   check: {
     '&:hover': {
       backgroundColor: 'rgba(58, 175, 169, 0.1)',
+    },
+    '&:hover $icon': {
+      borderColor: theme.palette.primary.main,
     },
     '& $checkedIcon::after': {
       content: 'close-quote',

@@ -53,5 +53,10 @@ export const materialTheme = createMuiTheme({
         },
       },
     },
+    MuiAccordionDetails: {
+      root: {
+        display: 'block',
+      },
+    },
   },
 });

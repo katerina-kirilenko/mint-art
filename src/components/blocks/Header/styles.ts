@@ -1,10 +1,10 @@
-import { makeStyles, Theme, fade } from '@material-ui/core/styles';
+import { makeStyles, Theme } from '@material-ui/core/styles';
 import colors from 'theme/colors';
 
-export const useClasses = makeStyles((theme: Theme) => ({
+export const useClasses = makeStyles(({ palette, breakpoints, spacing }: Theme) => ({
   header: {
     flexGrow: 1,
-    borderBottom: `1px solid ${theme.palette.grey[200]}`,
+    borderBottom: `1px solid ${palette.grey[200]}`,
   },
   topBar: {
     boxShadow: 'none',
@@ -22,12 +22,12 @@ export const useClasses = makeStyles((theme: Theme) => ({
   },
   icon: {
     padding: '6px 7px',
-    color: theme.palette.grey[500],
+    color: palette.grey[500],
   },
   badge: {
     '& span': {
       color: '#fff',
-      backgroundColor: theme.palette.grey[700],
+      backgroundColor: palette.grey[700],
       border: '1px solid #fff',
       padding: 0,
       height: '16px',
@@ -43,8 +43,8 @@ export const useClasses = makeStyles((theme: Theme) => ({
     marginRight: '12px',
     marginLeft: 0,
     width: '100%',
-    [theme.breakpoints.up('sm')]: {
-      marginLeft: theme.spacing(1),
+    [breakpoints.up('sm')]: {
+      marginLeft: spacing(1),
       width: 'auto',
     },
   },
@@ -53,7 +53,7 @@ export const useClasses = makeStyles((theme: Theme) => ({
       paddingLeft: '4px',
     },
     '& svg': {
-      fill: theme.palette.grey[500],
+      fill: palette.grey[500],
     },
   },
   widget: {

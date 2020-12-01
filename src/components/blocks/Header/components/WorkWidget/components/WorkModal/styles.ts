@@ -12,7 +12,7 @@ export const useClasses = makeStyles((theme: Theme) => ({
   modalFooter: {
     borderTop: `1px solid #e7e7e9`,
     padding: '16px',
-    margin: '40px -40px 0',
+    margin: '10px -40px 0',
   },
   dialogContent: {
     padding: 0,
@@ -40,11 +40,14 @@ export const useClasses = makeStyles((theme: Theme) => ({
     },
   },
   accordion: {
-    marginBottom: 0,
     boxShadow: 'none',
     '&::before': {
       height: 0,
     },
+  },
+  accordionExpanded: {
+    margin: '0 !important',
+    paddingBottom: '20px',
   },
   accordionSummary: {
     padding: 0,

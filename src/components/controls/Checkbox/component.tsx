@@ -13,6 +13,7 @@ const Checkbox = ({ name, checked, onChange }: CheckboxProps): ReactElement => {
       onChange={onChange}
       icon={<span className={classes.icon} />}
       checkedIcon={<span className={clsx(classes.icon, classes.checkedIcon)} />}
+      disableRipple
       name={name}
       classes={{
         root: classes.check,

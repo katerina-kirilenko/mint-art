@@ -1,4 +1,4 @@
-import React, { ReactElement, useState, ChangeEvent } from 'react';
+import React, { ReactElement, useState, useCallback, ChangeEvent } from 'react';
 import {
   Accordion,
   AccordionSummary,
@@ -24,6 +24,7 @@ const accordionItems = [
     label: 'What are your work preferences?',
     component: <Preferences />,
     required: true,
+    next: 'specialties',
   },
   {
     id: 2,
@@ -31,6 +32,7 @@ const accordionItems = [
     label: 'Select up to 3 specialties',
     component: <Specialties />,
     required: true,
+    next: 'workHistory',
   },
   {
     id: 3,
@@ -38,20 +40,28 @@ const accordionItems = [
     label: 'Add your work history, education, and skills (Optional)',
     component: <WorkHistory />,
     required: false,
+    next: '',
   },
 ];
 
 const WorkModal = ({ isOpen, close }: WorkModalProps): ReactElement => {
   const classes = useClasses();
 
-  const [expanded, setExpanded] = useState<string | false>('preferences');
+  const [expanded, setExpanded] = useState<string | false>(false);
 
-  const handleChangeAccordion = (panel: string) => (
-    event: ChangeEvent<any>,
-    isExpanded: boolean,
-  ) => {
-    setExpanded(isExpanded ? panel : false);
-  };
+  const handleChangeAccordion = useCallback(
+    (panel: string) => (event: ChangeEvent<Record<string, unknown>>, isExpanded: boolean) => {
+      setExpanded(isExpanded ? panel : false);
+    },
+    [expanded],
+  );
+
+  const handleClickNext = useCallback(
+    (panel: string) => () => {
+      setExpanded(panel || false);
+    },
+    [expanded],
+  );
 
   return (
     <Dialog
@@ -80,7 +90,7 @@ const WorkModal = ({ isOpen, close }: WorkModalProps): ReactElement => {
       </div>
 
       <div>
-        {accordionItems.map(({ id, name, label, component, required }) => {
+        {accordionItems.map(({ id, name, label, component, required, next }) => {
           return (
             <Accordion
               key={id}
@@ -88,6 +98,7 @@ const WorkModal = ({ isOpen, close }: WorkModalProps): ReactElement => {
               onChange={handleChangeAccordion(name)}
               classes={{
                 root: classes.accordion,
+                expanded: classes.accordionExpanded,
               }}
             >
               <AccordionSummary
@@ -110,6 +121,9 @@ const WorkModal = ({ isOpen, close }: WorkModalProps): ReactElement => {
                 )}
               </AccordionSummary>
               {component}
+              <Button variant="contained" disableElevation onClick={handleClickNext(next)}>
+                Next
+              </Button>
             </Accordion>
           );
         })}

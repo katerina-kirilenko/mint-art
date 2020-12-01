@@ -2,7 +2,6 @@ import { makeStyles, Theme } from '@material-ui/core/styles';
 
 export const useClasses = makeStyles(({ palette }: Theme) => ({
   accordionDetails: {
-    flexDirection: 'column',
     padding: '8px 0 0',
     '&& $formGroup': {
       marginBottom: '16px',
@@ -20,6 +19,10 @@ export const useClasses = makeStyles(({ palette }: Theme) => ({
   title: {
     fontSize: '1rem',
     fontWeight: 500,
+  },
+  salaryTitle: {
+    marginTop: '6px',
+    marginBottom: '16px',
   },
   requiredIndicator: {
     fontSize: '1.2rem',
@@ -42,7 +45,20 @@ export const useClasses = makeStyles(({ palette }: Theme) => ({
     flexDirection: 'column',
     paddingTop: 0,
   },
+  formControl: {
+    display: 'block',
+    width: '100%',
+    '&:not(:last-child)': {
+      marginBottom: '1rem',
+    },
+  },
   input: {
     margin: '10px 0',
+  },
+  radioGroup: {
+    flexDirection: 'row',
+    '& label': {
+      marginRight: '2rem',
+    },
   },
 }));
