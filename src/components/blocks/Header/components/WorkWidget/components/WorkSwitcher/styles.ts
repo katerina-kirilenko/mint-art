@@ -49,4 +49,7 @@ export const useClasses = makeStyles((theme: Theme) => ({
   labelActive: {
     color: theme.palette.secondary.main,
   },
+  container: {
+    width: 'auto',
+  },
 }));

@@ -1,30 +1,34 @@
-import React, { ReactElement, useCallback, useState } from 'react';
+import React, { ReactElement, useCallback } from 'react';
 import clsx from 'clsx';
+import { useDispatch, useSelector } from 'react-redux';
+import { isAvailableForWork } from 'store/selectors';
+import { setAvailableForWork } from 'store/actions';
 import { Grid, Typography } from '@material-ui/core';
 import { useClasses, WorkSwitch } from './styles';
 
 const WorkSwitcher = (): ReactElement => {
   const classes = useClasses();
+  const dispatch = useDispatch();
 
-  const [isWorkWidgetActive, setIsWorkWidgetActive] = useState(false);
+  const isAvailable = useSelector(isAvailableForWork);
 
   const handleChange = useCallback(() => {
-    setIsWorkWidgetActive(!isWorkWidgetActive);
-  }, [isWorkWidgetActive]);
+    dispatch(setAvailableForWork());
+  }, []);
 
   return (
-    <Grid container>
+    <Grid container classes={{ container: classes.container }}>
       <Grid item>
         <Typography
           component="span"
-          className={clsx(classes.label, { [classes.labelActive]: !isWorkWidgetActive })}
+          className={clsx(classes.label, { [classes.labelActive]: !isAvailable })}
         >
           Not available
         </Typography>
       </Grid>
       <Grid item>
         <WorkSwitch
-          checked={isWorkWidgetActive}
+          checked={isAvailable}
           onChange={handleChange}
           name="workWidget"
           color="primary"
@@ -33,7 +37,7 @@ const WorkSwitcher = (): ReactElement => {
       <Grid item>
         <Typography
           component="span"
-          className={clsx(classes.label, { [classes.labelActive]: isWorkWidgetActive })}
+          className={clsx(classes.label, { [classes.labelActive]: isAvailable })}
         >
           Available for work
         </Typography>

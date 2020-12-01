@@ -14,6 +14,7 @@ import { ExpandMore } from '@material-ui/icons';
 import Preferences from './components/Preferences';
 import Specialties from './components/Specialties';
 import WorkHistory from './components/WorkHistory';
+import WorkSwitcher from '../WorkSwitcher';
 import { WorkModalProps } from './types';
 import { useClasses } from './styles';
 
@@ -138,6 +139,7 @@ const WorkModal = ({ isOpen, close }: WorkModalProps): ReactElement => {
           <Button onClick={close} color="secondary" className={classes.btnClose}>
             Cancel
           </Button>
+          <WorkSwitcher />
           <Button onClick={close} color="primary" variant="contained" disableElevation>
             Save & Exit
           </Button>
