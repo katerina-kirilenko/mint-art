@@ -1,6 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
 
-export default createGlobalStyle<any>`
+export default createGlobalStyle`
   a {
     text-decoration: none;
   }

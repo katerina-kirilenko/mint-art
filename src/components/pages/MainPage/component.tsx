@@ -1,10 +1,7 @@
 import React, { ReactElement } from 'react';
 import Header from 'components/blocks/Header';
-import { useClasses } from './styles';
 
 const MainPage = (): ReactElement => {
-  const classes = useClasses();
-
   return (
     <div className="main-page">
       <Header />
