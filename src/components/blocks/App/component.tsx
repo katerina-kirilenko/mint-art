@@ -1,15 +1,18 @@
 import React, { ReactElement } from 'react';
 import { Provider } from 'react-redux';
-import { store } from 'store';
+import { PersistGate } from 'redux-persist/integration/react';
+import { store, persistor } from 'store';
 import ThemeProviderWrapper from 'components/wrappers/ThemeProvider';
 import MainPage from 'components/pages/MainPage';
 
 const App = (): ReactElement => {
   return (
     <Provider store={store}>
-      <ThemeProviderWrapper>
-        <MainPage />
-      </ThemeProviderWrapper>
+      <PersistGate loading={null} persistor={persistor}>
+        <ThemeProviderWrapper>
+          <MainPage />
+        </ThemeProviderWrapper>
+      </PersistGate>
     </Provider>
   );
 };

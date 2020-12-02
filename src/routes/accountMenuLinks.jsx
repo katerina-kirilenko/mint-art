@@ -75,8 +75,4 @@ export const accountMenuLinks = [
     path: '/',
     label: 'Account Settings',
   },
-  {
-    path: '/',
-    label: 'Sign Out',
-  },
 ];

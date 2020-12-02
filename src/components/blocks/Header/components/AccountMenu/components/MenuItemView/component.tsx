@@ -11,12 +11,16 @@ const MenuItemView = ({
   divider,
   arrowForward,
   subMenu,
+  handleClick,
 }: ItemListProps): ReactElement => {
   const classes = useClasses();
 
   return (
     <>
-      <MenuItem className={clsx(classes.menuItem, { [classes.arrow]: !!subMenu })}>
+      <MenuItem
+        onClick={handleClick}
+        className={clsx(classes.menuItem, { [classes.arrow]: !!subMenu })}
+      >
         <Grid container>
           {icon && (
             <ListItemIcon className={clsx(classes.icon, { [classes.iconSubMenu]: !!subMenu })}>
