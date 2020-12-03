@@ -1,35 +1,35 @@
 import { makeStyles, Theme } from '@material-ui/core/styles';
 
-export const useClasses = makeStyles((theme: Theme) => ({
+export const useClasses = makeStyles(({ palette }: Theme) => ({
   menuItem: {
     display: 'flex',
     padding: '10px 32px',
     fontSize: '1rem',
     lineHeight: '24px',
     '&:hover a': {
-      color: theme.palette.secondary.dark,
+      color: palette.text.primary,
       textDecoration: 'none',
     },
     '&:hover $icon': {
       '& svg': {
-        fill: theme.palette.secondary.dark,
+        fill: palette.text.primary,
       },
     },
     '&&:hover $iconSubMenu': {
       '& svg': {
-        fill: theme.palette.primary.dark,
+        fill: palette.primary.dark,
       },
     },
     '&&:hover $iconArrowSubMenu': {
       '& svg': {
-        fill: theme.palette.primary.dark,
+        fill: palette.primary.dark,
       },
     },
   },
   icon: {
     minWidth: '2em',
     '& svg': {
-      fill: theme.palette.secondary.light,
+      fill: palette.text.secondary,
       width: '0.7em',
       height: '0.7em',
     },
@@ -37,18 +37,18 @@ export const useClasses = makeStyles((theme: Theme) => ({
   iconArrowSubMenu: {
     minWidth: 'inherit',
     '& svg': {
-      fill: theme.palette.primary.main,
+      fill: palette.primary.main,
       width: '0.6em',
       height: '0.6em',
     },
   },
   iconSubMenu: {
     '& svg': {
-      fill: theme.palette.primary.main,
+      fill: palette.primary.main,
     },
   },
   link: {
-    color: theme.palette.secondary.light,
+    color: palette.text.secondary,
   },
   listItem: {
     display: 'block',

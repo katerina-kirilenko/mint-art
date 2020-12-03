@@ -1,6 +1,6 @@
-import { makeStyles, Theme } from '@material-ui/core/styles';
+import { fade, makeStyles, Theme } from '@material-ui/core/styles';
 
-export const useClasses = makeStyles((theme: Theme) => ({
+export const useClasses = makeStyles(({ palette }: Theme) => ({
   dialog: {
     margin: '1rem',
     padding: '40px 40px 0',
@@ -10,7 +10,7 @@ export const useClasses = makeStyles((theme: Theme) => ({
     marginBottom: '20px',
   },
   modalFooter: {
-    borderTop: `1px solid #e7e7e9`,
+    borderTop: `1px solid ${palette.divider}`,
     padding: '16px',
     margin: '10px -40px 0',
   },
@@ -33,10 +33,10 @@ export const useClasses = makeStyles((theme: Theme) => ({
     },
   },
   btnClose: {
-    backgroundColor: theme.palette.grey[200],
+    backgroundColor: fade(palette.text.primary, 0.15),
     padding: '6px 14px',
     '&:hover': {
-      backgroundColor: theme.palette.grey[300],
+      backgroundColor: fade(palette.text.primary, 0.1),
     },
   },
   accordion: {
@@ -52,33 +52,36 @@ export const useClasses = makeStyles((theme: Theme) => ({
   accordionSummary: {
     padding: 0,
   },
+  expandMore: {
+    fill: palette.text.secondary,
+  },
   accordionSummaryContent: {
     alignItems: 'center',
     '&:hover $accordionTitle': {
-      color: theme.palette.secondary.dark,
+      color: palette.text.primary,
     },
   },
   accordionStep: {
     fontSize: '0.8rem',
     fontWeight: 700,
-    color: '#000',
+    color: palette.text.secondary,
     width: '24px',
     height: '24px',
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    background: '#f3f3f4',
+    background: fade(palette.text.primary, 0.1),
     borderRadius: '50%',
     marginRight: '12px',
   },
   accordionTitle: {
-    color: theme.palette.secondary.light,
+    color: palette.text.secondary,
     fontWeight: 700,
   },
   requiredIndicator: {
     fontSize: '1.2rem',
     fontWeight: 700,
-    color: theme.palette.error.main,
+    color: palette.error.main,
     paddingLeft: '2px',
   },
 }));

@@ -1,6 +1,6 @@
 import { makeStyles, Theme } from '@material-ui/core/styles';
 
-export const useClasses = makeStyles((theme: Theme) => ({
+export const useClasses = makeStyles(({ palette, transitions }: Theme) => ({
   tooltip: {
     padding: 0,
   },
@@ -21,24 +21,24 @@ export const useClasses = makeStyles((theme: Theme) => ({
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
-      color: theme.palette.secondary.main,
-      transition: theme.transitions.create('all'),
+      color: palette.text.secondary,
+      transition: transitions.create('all'),
       '&:hover': {
         textDecoration: 'none',
-        color: theme.palette.secondary.dark,
+        color: palette.text.primary,
         fontWeight: 500,
         '& svg': {
-          fill: theme.palette.secondary.dark,
+          fill: palette.text.primary,
         },
       },
     },
   },
   arrowMore: {
-    fill: theme.palette.secondary.light,
+    fill: palette.text.secondary,
   },
   navDropdown: {
     width: '100vw',
-    backgroundColor: '#fff',
+    backgroundColor: palette.background.paper,
     padding: '0 1rem',
     position: 'absolute',
     boxShadow: '0px 20px 35px rgba(0,0,0,0.1)',
@@ -50,9 +50,10 @@ export const useClasses = makeStyles((theme: Theme) => ({
     padding: '12px',
     fontSize: '0.95rem',
     '& a': {
+      color: palette.text.secondary,
       '&:hover': {
         textDecoration: 'none',
-        color: theme.palette.secondary.light,
+        color: palette.text.primary,
         fontWeight: 500,
       },
     },

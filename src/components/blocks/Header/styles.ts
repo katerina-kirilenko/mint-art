@@ -1,14 +1,13 @@
 import { makeStyles, Theme } from '@material-ui/core/styles';
-import colors from 'theme/colors';
 
 export const useClasses = makeStyles(({ palette }: Theme) => ({
   header: {
     flexGrow: 1,
-    borderBottom: `1px solid ${palette.grey[200]}`,
+    borderBottom: `1px solid ${palette.divider}`,
   },
   topBar: {
     boxShadow: 'none',
-    backgroundColor: colors.light,
+    backgroundColor: palette.background.default,
   },
   toolBar: {
     display: 'flex',
@@ -19,5 +18,10 @@ export const useClasses = makeStyles(({ palette }: Theme) => ({
   },
   gridContainer: {
     width: 'auto',
+  },
+  iconBrightness: {
+    marginLeft: '1rem',
+    padding: '6px 7px',
+    color: palette.text.secondary,
   },
 }));

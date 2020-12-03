@@ -1,7 +1,7 @@
 import { makeStyles, Theme } from '@material-ui/core/styles';
 import check from 'assets/header/check-white.svg';
 
-export const useClasses = makeStyles((theme: Theme) => ({
+export const useClasses = makeStyles(({ palette }: Theme) => ({
   icon: {
     width: '20px',
     height: '20px',
@@ -13,24 +13,24 @@ export const useClasses = makeStyles((theme: Theme) => ({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    background: '#fff',
-    border: `1px solid ${theme.palette.grey[300]}`,
+    background: palette.background.paper,
+    border: `1px solid ${palette.divider}`,
     outline: 'none',
     transition: 'box-shadow 200ms ease, background 200ms ease, border 200ms ease',
     '&:hover': {
-      borderColor: theme.palette.primary.main,
+      borderColor: palette.primary.main,
     },
   },
   checkedIcon: {
-    background: theme.palette.primary.main,
-    borderColor: theme.palette.primary.main,
+    background: palette.primary.main,
+    borderColor: palette.primary.main,
   },
   check: {
-    '&:hover': {
+    '&&:hover': {
       backgroundColor: 'rgba(58, 175, 169, 0.1)',
     },
     '&:hover $icon': {
-      borderColor: theme.palette.primary.main,
+      borderColor: palette.primary.main,
     },
     '& $checkedIcon::after': {
       content: 'close-quote',

@@ -18,7 +18,7 @@ const UnAutorizedPanel = (): ReactElement => {
       <Link href="/" className={classes.linkSearch}>
         <Search className={classes.iconSearch} />
       </Link>
-      <Button color="secondary" disableElevation onClick={logIn}>
+      <Button disableElevation onClick={logIn}>
         Sign in
       </Button>
       <Button color="primary" variant="contained" disableElevation>

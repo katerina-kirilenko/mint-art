@@ -12,7 +12,7 @@ export const StyledInput = withStyles(({ palette, transitions, spacing }: Theme)
       borderRadius: '8px',
       position: 'relative',
       backgroundColor: palette.background.paper,
-      border: `1px solid ${palette.grey[200]}`,
+      border: `1px solid ${palette.divider}`,
       fontSize: '1rem',
       padding: '10px 26px 10px 12px',
       transition: transitions.create(['border-color', 'box-shadow']),

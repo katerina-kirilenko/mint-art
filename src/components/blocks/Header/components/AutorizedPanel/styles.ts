@@ -10,9 +10,9 @@ export const useClasses = makeStyles(({ palette, breakpoints, spacing }: Theme) 
   },
   badge: {
     '& span': {
-      color: '#fff',
-      backgroundColor: palette.grey[700],
-      border: '1px solid #fff',
+      color: palette.background.paper,
+      backgroundColor: palette.grey[500],
+      border: `1px solid ${palette.background.paper}`,
       padding: 0,
       height: '16px',
       fontSize: ' 0.7rem',
@@ -41,13 +41,13 @@ export const useClasses = makeStyles(({ palette, breakpoints, spacing }: Theme) 
     },
   },
   widget: {
-    backgroundColor: '#fff',
+    backgroundColor: palette.background.paper,
     borderRadius: '8px',
     boxShadow: '0px 10px 50px rgba(0,0,0,0.15)',
     maxWidth: 'inherit',
   },
   widgetArrow: {
-    color: '#fff',
+    color: palette.background.paper,
   },
   widgetMargin: {
     margin: '10px 0',

@@ -1,9 +1,11 @@
-import { SET_AVAILABLE_FOR_WORK, SET_AUTORIZED_USER } from 'constants/actions';
+import { SET_AVAILABLE_FOR_WORK, SET_AUTORIZED_USER, SET_THEME } from 'constants/actions';
+import { LIGHT } from 'constants/themes';
 import { ActionTypes, InitialStateTypes } from './types';
 
 const initialState = {
   availableForWork: false,
   isAutorizedUser: false,
+  currentTheme: LIGHT,
 };
 
 export default (state = initialState, action: ActionTypes): InitialStateTypes => {
@@ -17,6 +19,11 @@ export default (state = initialState, action: ActionTypes): InitialStateTypes =>
       return {
         ...state,
         isAutorizedUser: !state.isAutorizedUser,
+      };
+    case SET_THEME:
+      return {
+        ...state,
+        currentTheme: action.payload,
       };
     default:
       return state;

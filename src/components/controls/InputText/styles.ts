@@ -4,7 +4,7 @@ export const useClasses = makeStyles(({ palette, transitions }: Theme) => ({
   textField: {
     fontSize: '1rem',
     borderRadius: '8px',
-    border: `1px solid ${palette.grey[200]}`,
+    border: `1px solid ${palette.divider}`,
     transition: transitions.create('all'),
     '&:hover': {
       boxShadow: `0 0 0 4px ${fade(palette.primary.main, 0.1)}`,

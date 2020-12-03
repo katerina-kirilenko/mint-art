@@ -1,4 +1,4 @@
-import { makeStyles, Theme } from '@material-ui/core/styles';
+import { fade, makeStyles, Theme } from '@material-ui/core/styles';
 
 export const useClasses = makeStyles(({ palette }: Theme) => ({
   accordionDetails: {
@@ -9,13 +9,12 @@ export const useClasses = makeStyles(({ palette }: Theme) => ({
     margin: '0 0 8px 0',
     padding: '5px 0 5px 7px',
     width: '100%',
-    backgroundColor: palette.grey[100],
-    border: `1px solid ${palette.grey[100]}`,
+    backgroundColor: fade(palette.divider, 0.1),
+    border: `1px solid transparent`,
     borderRadius: '8px',
     transition: 'background 200ms ease',
     '&:hover': {
-      backgroundColor: palette.grey[300],
-      borderColor: palette.grey[300],
+      backgroundColor: fade(palette.divider, 0.15),
     },
     '& span': {
       fontWeight: 500,
@@ -25,6 +24,7 @@ export const useClasses = makeStyles(({ palette }: Theme) => ({
   },
   check: {
     backgroundColor: 'transparent',
+    borderColor: fade(palette.divider, 0.1),
     '&:hover': {
       backgroundColor: 'transparent',
     },
@@ -40,7 +40,7 @@ export const useClasses = makeStyles(({ palette }: Theme) => ({
     alignItems: 'center',
   },
   expand: {
-    fill: palette.grey[700],
+    fill: palette.text.secondary,
   },
   formGroup: {
     display: 'flex',

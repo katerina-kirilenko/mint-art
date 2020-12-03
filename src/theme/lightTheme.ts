@@ -1,14 +1,16 @@
 import { createMuiTheme } from '@material-ui/core/styles';
+import { LIGHT } from 'constants/themes';
+import colors from './colors';
 
-export const materialTheme = createMuiTheme({
+export const lightTheme = createMuiTheme({
   palette: {
-    type: 'light',
-    background: { paper: 'rgba(255, 255, 255, 1)', default: 'rgba(254, 255, 255, 1)' },
+    type: LIGHT,
+    background: { paper: '#fff', default: colors.light },
     primary: {
       light: 'rgba(114, 225, 219, 1)',
       main: 'rgba(58, 175, 169, 1)',
       dark: 'rgba(0, 127, 122, 1)',
-      contrastText: 'rgba(255, 255, 255, 1)',
+      contrastText: '#fff',
     },
     secondary: {
       light: 'rgba(71, 80, 92, 1)',
@@ -38,7 +40,7 @@ export const materialTheme = createMuiTheme({
     },
     MuiTooltip: {
       tooltip: {
-        color: '#1f2833',
+        color: colors.dark,
       },
     },
     MuiGrid: {

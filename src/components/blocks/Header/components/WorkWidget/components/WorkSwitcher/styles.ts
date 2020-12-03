@@ -1,7 +1,7 @@
 import { createStyles, makeStyles, Theme, withStyles } from '@material-ui/core/styles';
 import { Switch } from '@material-ui/core';
 
-export const WorkSwitch = withStyles((theme: Theme) =>
+export const WorkSwitch = withStyles(({ palette }: Theme) =>
   createStyles({
     root: {
       width: 32,
@@ -12,14 +12,14 @@ export const WorkSwitch = withStyles((theme: Theme) =>
     },
     switchBase: {
       padding: 2,
-      color: theme.palette.grey[500],
+      color: palette.grey[500],
       '&$checked': {
         transform: 'translateX(14px)',
-        color: theme.palette.common.white,
+        color: palette.common.white,
         '& + $track': {
           opacity: 1,
-          backgroundColor: theme.palette.primary.main,
-          borderColor: theme.palette.primary.main,
+          backgroundColor: palette.primary.main,
+          borderColor: palette.primary.main,
         },
       },
     },
@@ -27,27 +27,27 @@ export const WorkSwitch = withStyles((theme: Theme) =>
       width: 14,
       height: 14,
       boxShadow: 'none',
-      color: '#fff',
+      color: palette.background.paper,
     },
     track: {
-      border: `1px solid ${theme.palette.grey[500]}`,
+      border: `1px solid ${palette.grey[500]}`,
       borderRadius: 9,
       opacity: 1,
-      backgroundColor: theme.palette.grey[500],
+      backgroundColor: palette.grey[500],
     },
     checked: {},
   }),
 )(Switch);
 
-export const useClasses = makeStyles((theme: Theme) => ({
+export const useClasses = makeStyles(({ palette }: Theme) => ({
   label: {
     fontSize: '1rem',
     lineHeight: 'inherit',
     fontWeight: 500,
-    color: theme.palette.grey[500],
+    color: palette.grey[500],
   },
   labelActive: {
-    color: theme.palette.secondary.main,
+    color: palette.text.primary,
   },
   container: {
     width: 'auto',

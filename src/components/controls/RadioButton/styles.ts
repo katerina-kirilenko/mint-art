@@ -11,8 +11,8 @@ export const useClasses = makeStyles(({ palette }: Theme) => ({
     borderRadius: '50%',
     width: 20,
     height: 20,
-    border: `1px solid ${palette.grey[300]}`,
-    backgroundColor: '#fff',
+    border: `1px solid ${palette.divider}`,
+    backgroundColor: palette.background.paper,
     'input:hover ~ &': {
       borderColor: palette.primary.main,
     },

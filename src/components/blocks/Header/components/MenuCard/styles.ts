@@ -1,6 +1,6 @@
 import { makeStyles, Theme } from '@material-ui/core/styles';
 
-export const useClasses = makeStyles((theme: Theme) => ({
+export const useClasses = makeStyles(({ palette }: Theme) => ({
   card: {
     maxWidth: '200px',
     padding: '30px 8px',
@@ -9,7 +9,7 @@ export const useClasses = makeStyles((theme: Theme) => ({
         filter: 'none',
         textDecoration: 'none',
         '& p': {
-          color: theme.palette.grey[900],
+          color: palette.text.primary,
         },
       },
     },
@@ -34,7 +34,7 @@ export const useClasses = makeStyles((theme: Theme) => ({
       marginBottom: '5px',
     },
     '& p': {
-      color: theme.palette.grey[700],
+      color: palette.text.secondary,
       fontSize: '0.85rem',
     },
   },

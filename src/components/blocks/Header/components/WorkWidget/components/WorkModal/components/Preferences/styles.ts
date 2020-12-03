@@ -8,7 +8,7 @@ export const useClasses = makeStyles(({ palette }: Theme) => ({
     },
   },
   formGroup: {
-    border: `1px solid ${palette.grey[300]}`,
+    border: `1px solid ${palette.divider}`,
     borderRadius: '8px',
   },
   controlLabel: {

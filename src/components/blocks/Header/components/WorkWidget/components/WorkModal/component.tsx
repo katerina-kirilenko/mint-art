@@ -83,7 +83,7 @@ const WorkModal = ({ isOpen, close }: WorkModalProps): ReactElement => {
             root: classes.dialogContent,
           }}
         >
-          <DialogContentText color="secondary" className={classes.contentText}>
+          <DialogContentText className={classes.contentText}>
             In order to make you available and match you with the right opportunities we need some
             additional information first.
           </DialogContentText>
@@ -103,7 +103,7 @@ const WorkModal = ({ isOpen, close }: WorkModalProps): ReactElement => {
               }}
             >
               <AccordionSummary
-                expandIcon={<ExpandMore />}
+                expandIcon={<ExpandMore className={classes.expandMore} />}
                 aria-controls={`${name}-content`}
                 id={`${name}-header`}
                 classes={{
@@ -122,7 +122,7 @@ const WorkModal = ({ isOpen, close }: WorkModalProps): ReactElement => {
                 )}
               </AccordionSummary>
               {component}
-              <Button variant="contained" disableElevation onClick={handleClickNext(next)}>
+              <Button disableElevation onClick={handleClickNext(next)} className={classes.btnClose}>
                 Next
               </Button>
             </Accordion>
@@ -136,7 +136,7 @@ const WorkModal = ({ isOpen, close }: WorkModalProps): ReactElement => {
             root: classes.dialogActions,
           }}
         >
-          <Button onClick={close} color="secondary" className={classes.btnClose}>
+          <Button onClick={close} className={classes.btnClose}>
             Cancel
           </Button>
           <WorkSwitcher />
