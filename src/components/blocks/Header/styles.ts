@@ -3,6 +3,7 @@ import { makeStyles, Theme } from '@material-ui/core/styles';
 export const useClasses = makeStyles(({ palette }: Theme) => ({
   header: {
     flexGrow: 1,
+    width: '100%',
     borderBottom: `1px solid ${palette.divider}`,
   },
   topBar: {

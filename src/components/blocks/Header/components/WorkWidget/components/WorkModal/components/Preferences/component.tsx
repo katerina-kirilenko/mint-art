@@ -117,7 +117,25 @@ const Preferences = (): ReactElement => {
               <Typography component="span" className={clsx(classes.title, classes.salaryTitle)}>
                 Salary range (in USD)
               </Typography>
-              <Select value={salary} onChange={handleChangeSalary} options={selectOptions} />
+              <Select
+                options={selectOptions}
+                value={salary}
+                onChange={handleChangeSalary}
+                MenuProps={{
+                  anchorOrigin: {
+                    vertical: 'top',
+                    horizontal: 'left',
+                  },
+                  transformOrigin: {
+                    vertical: 'bottom',
+                    horizontal: 'left',
+                  },
+                  getContentAnchorEl: null,
+                  PopoverClasses: {
+                    root: classes.popover,
+                  },
+                }}
+              />
             </FormControl>
           </AccordionDetails>
         </Accordion>

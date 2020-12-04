@@ -40,4 +40,9 @@ export const useClasses = makeStyles(({ palette }: Theme) => ({
   select: {
     width: '100%',
   },
+  popover: {
+    '& li': {
+      fontSize: '0.8rem',
+    },
+  },
 }));
