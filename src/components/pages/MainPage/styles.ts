@@ -5,6 +5,7 @@ export const useClasses = makeStyles(({ palette, transitions }: Theme) => ({
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
+    paddingBottom: '20px',
   },
   container: {
     flex: '1 0 auto',
@@ -18,6 +19,7 @@ export const useClasses = makeStyles(({ palette, transitions }: Theme) => ({
   wrapContent: {
     paddingTop: '26px',
     flexDirection: 'column',
+    alignItems: 'stretch',
   },
   buttonGroup: {
     width: 'auto',
@@ -82,5 +84,9 @@ export const useClasses = makeStyles(({ palette, transitions }: Theme) => ({
       fontWeight: 500,
       color: palette.primary.main,
     },
+  },
+  cardsContainer: {
+    padding: '1.2rem 0',
+    justifyContent: 'space-between',
   },
 }));

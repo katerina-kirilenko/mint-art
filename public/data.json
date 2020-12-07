@@ -1,0 +1,51 @@
+[
+  {
+    "id": 913,
+    "name": "Darya Semenova",
+    "avatar": "./content/avatar1.jpg",
+    "shots": [
+      {
+        "id": 1,
+        "created": "11/11/2020",
+        "title": "Good Food",
+        "image": "./content/shot1.jpg",
+        "description": "Good food brings people together. I’m definitely a foodie person guys. Most of my thoughts are about Food, breakfasts and dinners. When and where I will be eating.",
+        "tags": ["love", "cafe", "food", "people", "procreate", "vector", "texture"],
+        "likes": 46,
+        "views": 1665,
+        "saves": 6,
+        "comments": [
+          {
+            "id": 1000,
+            "author": "John MacLeod",
+            "data": "12/11/2020",
+            "text": "Wow! Tastier together!"
+          },
+          { "id": 1001, "author": "UPQODE", "data": "01/10/2020", "text": "Great design!" }
+        ]
+      }
+    ]
+  },
+  {
+    "id": 996,
+    "name": "Yaroslav Zubko",
+    "avatar": "./content/avatar2.jpg",
+    "shots": [
+      {
+        "id": 2,
+        "created": "19/11/2020",
+        "title": "Sentience, logo design for machine learning translation app",
+        "image": "./content/shot2.jpg",
+        "description": "Logo design proposal for Sentience. 'The name (both of the app and the company) is derived from the idea of bringing intelligent machine-learning and data-analysis techniques to bear on natural-language tasks.",
+        "tags": ["technology", "translator", "science", "translating"],
+        "likes": 54,
+        "views": 1933,
+        "saves": 16,
+        "comments": [
+          { "id": 2000, "author": "Alex Tass", "data": "22/11/2020", "text": "WOW" },
+          { "id": 20001, "author": "John Brandosterone", "data": "23/11/2020", "text": "Hahahaha" }
+        ]
+      }
+    ]
+  }
+]
