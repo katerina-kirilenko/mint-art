@@ -3,8 +3,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { AppBar, Grid, IconButton, Toolbar, Typography } from '@material-ui/core';
 import { Brightness3, Brightness5 } from '@material-ui/icons';
 import { DARK, LIGHT } from 'constants/themes';
-import { isAutorizedUser, currentTheme } from 'store/selectors';
-import { setCurrentTheme } from 'store/actions';
+import { getSettings } from 'store/settings';
+import { getAuth } from 'store/auth';
+import { setCurrentTheme } from 'store/settings';
 import Menu from './components/Menu';
 import AutorizedPanel from './components/AutorizedPanel';
 import UnAutorizedPanel from './components/UnAutorizedPanel';
@@ -14,8 +15,8 @@ const Header = (): ReactElement => {
   const classes = useClasses();
   const dispatch = useDispatch();
 
-  const isAutorized = useSelector(isAutorizedUser);
-  const theme = useSelector(currentTheme);
+  const { isAutorizedUser } = useSelector(getAuth);
+  const { currentTheme } = useSelector(getSettings);
 
   const setTheme = useCallback((theme: string) => () => dispatch(setCurrentTheme(theme)), []);
 
@@ -30,8 +31,8 @@ const Header = (): ReactElement => {
             <Menu />
           </Grid>
           <Grid container classes={{ root: classes.gridContainer }}>
-            {isAutorized ? <AutorizedPanel /> : <UnAutorizedPanel />}
-            {theme === LIGHT ? (
+            {isAutorizedUser ? <AutorizedPanel /> : <UnAutorizedPanel />}
+            {currentTheme === LIGHT ? (
               <IconButton className={classes.iconBrightness} onClick={setTheme(DARK)}>
                 <Brightness3 />
               </IconButton>

@@ -6,13 +6,13 @@ import { createMuiTheme } from '@material-ui/core/styles';
 import { lightTheme } from 'theme/lightTheme';
 import { darkTheme } from 'theme/darkTheme';
 import GlobalStyle from 'theme/GlobalStyle';
-import { currentTheme } from 'store/selectors';
+import { getSettings } from 'store/settings';
 import { LIGHT } from 'constants/themes';
 import { Props } from './types';
 
 const ThemeProviderWrapper = ({ children }: Props): ReactElement => {
-  const theme = useSelector(currentTheme);
-  const appliedTheme = createMuiTheme(theme === LIGHT ? lightTheme : darkTheme);
+  const { currentTheme } = useSelector(getSettings);
+  const appliedTheme = createMuiTheme(currentTheme === LIGHT ? lightTheme : darkTheme);
 
   return (
     <ThemeProvider theme={appliedTheme}>

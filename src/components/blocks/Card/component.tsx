@@ -10,7 +10,7 @@ import {
   Typography,
 } from '@material-ui/core';
 import { ChatBubbleRounded, CreateNewFolder, Favorite } from '@material-ui/icons';
-import { User } from 'store/types';
+import { User } from 'store/usersData/types';
 import { useClasses } from './styles';
 
 const Card = (user: User): ReactElement => {

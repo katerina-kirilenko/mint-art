@@ -1,4 +1,4 @@
-import { User } from 'store/types';
+import { User } from 'store/usersData/types';
 
 const fetchData = async (): Promise<User[]> => {
   const response = await fetch('./data.json');

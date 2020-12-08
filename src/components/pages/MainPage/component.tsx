@@ -3,8 +3,7 @@ import clsx from 'clsx';
 import { useDispatch, useSelector } from 'react-redux';
 import { Button, CircularProgress, Grid, Typography } from '@material-ui/core';
 import { FilterList } from '@material-ui/icons';
-import { userDataRequest } from 'store/actions';
-import { selectUserData } from 'store/selectors';
+import { selectUserData, userDataRequest } from 'store/usersData';
 import Header from 'components/blocks/Header';
 import Card from 'components/blocks/Card';
 import Select from 'components/controls/Select';
@@ -20,7 +19,7 @@ const MainPage = (): ReactElement => {
   const [activeTagFilter, setActiveTagFilter] = useState('all');
   const [isFiltersPanelActive, setIsFiltersPanelActive] = useState(false);
 
-  const { data, isLoadingData } = useSelector(selectUserData);
+  const { usersData, isLoadingData } = useSelector(selectUserData);
 
   useEffect(() => {
     dispatch(userDataRequest());
@@ -114,7 +113,7 @@ const MainPage = (): ReactElement => {
             </Typography>
             <Grid container className={classes.cardsContainer}>
               {isLoadingData && <CircularProgress />}
-              {data.map((user) => {
+              {usersData.map((user) => {
                 return <Card key={user.id} {...user} />;
               })}
             </Grid>
