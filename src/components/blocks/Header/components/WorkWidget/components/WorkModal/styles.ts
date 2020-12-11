@@ -5,6 +5,9 @@ export const useClasses = makeStyles(({ palette }: Theme) => ({
     margin: '1rem',
     padding: '40px 40px 0',
     borderRadius: '12px',
+    '&::-webkit-scrollbar': {
+      display: 'none',
+    },
   },
   modalHeader: {
     marginBottom: '20px',

@@ -48,13 +48,6 @@ export const lightTheme = createMuiTheme({
         alignItems: 'center',
       },
     },
-    MuiDialog: {
-      paper: {
-        '&::-webkit-scrollbar': {
-          display: 'none',
-        },
-      },
-    },
     MuiAccordionDetails: {
       root: {
         display: 'block',
