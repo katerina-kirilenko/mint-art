@@ -3,7 +3,6 @@ import createSagaMiddleware from 'redux-saga';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
-// import rootReducer from 'store/rootReducer';
 import saga from 'store/userData/saga';
 
 import { combineReducers } from 'redux';

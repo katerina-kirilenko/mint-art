@@ -1,7 +1,7 @@
 import React, { ChangeEvent, ReactElement, useCallback, useEffect, useState } from 'react';
 import clsx from 'clsx';
 import { useDispatch, useSelector } from 'react-redux';
-import { Button, CircularProgress, Grid, Typography } from '@material-ui/core';
+import { Button, CircularProgress, Collapse, Grid, Typography } from '@material-ui/core';
 import { Alert } from '@material-ui/lab';
 import { FilterList } from '@material-ui/icons';
 import {
@@ -111,7 +111,10 @@ const MainPage = (): ReactElement => {
               Filters
             </Button>
           </Grid>
-          {isFiltersPanelActive && <FiltersPanel />}
+
+          <Collapse in={isFiltersPanelActive} classes={{ container: classes.collapseContainer }}>
+            <FiltersPanel />
+          </Collapse>
 
           <Grid container className={classes.wrapContent}>
             <div className={classes.wrap}>
@@ -133,7 +136,15 @@ const MainPage = (): ReactElement => {
                 {hasUserShots &&
                   shots.map((shot) => {
                     const props = { user, shot };
-                    return <Card key={shot.shotId} {...props} />;
+
+                    return (
+                      <Card
+                        key={shot.shotId}
+                        {...props}
+                        styles={classes.cardContainer}
+                        isFooterExist
+                      />
+                    );
                   })}
               </Grid>
             </Grid>

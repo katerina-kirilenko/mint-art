@@ -67,6 +67,9 @@ export const useClasses = makeStyles(({ palette, transitions }: Theme) => ({
     backgroundColor: fade(palette.text.primary, 0.1),
     borderColor: 'transparent',
   },
+  collapseContainer: {
+    width: '100%',
+  },
   titleContent: {
     fontWeight: 700,
     lineHeight: '1.6',
@@ -88,5 +91,10 @@ export const useClasses = makeStyles(({ palette, transitions }: Theme) => ({
   cardsContainer: {
     padding: '1.2rem 0',
     justifyContent: 'space-between',
+  },
+  cardContainer: {
+    width: '345px',
+    flexDirection: 'column',
+    marginBottom: '3rem',
   },
 }));

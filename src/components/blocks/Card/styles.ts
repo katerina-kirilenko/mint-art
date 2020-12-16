@@ -1,10 +1,6 @@
 import { makeStyles, Theme } from '@material-ui/core/styles';
 
 export const useClasses = makeStyles(({ palette, transitions }: Theme) => ({
-  cardContainer: {
-    width: '345px',
-    flexDirection: 'column',
-  },
   card: {
     borderRadius: 8,
     border: 'none',
