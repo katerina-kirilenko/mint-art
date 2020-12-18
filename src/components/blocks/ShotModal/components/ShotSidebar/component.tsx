@@ -1,4 +1,4 @@
-import React, { ReactElement, useState } from 'react';
+import React, { ReactElement, useCallback, useState } from 'react';
 import clsx from 'clsx';
 import { useSelector } from 'react-redux';
 import { Avatar, Badge, Grid, IconButton, Tooltip, Typography } from '@material-ui/core';
@@ -14,7 +14,7 @@ import { User } from 'store/userData/types';
 import { SidebarProps } from './types';
 import { useClasses } from './styles';
 
-const ShotSidebar = ({ cardOffsetTop }: SidebarProps): ReactElement => {
+const ShotSidebar = ({ cardOffsetTop, handleClickShareButton }: SidebarProps): ReactElement => {
   const classes = useClasses();
 
   const [isLikedShot, setLikedShot] = useState(false);
@@ -24,9 +24,9 @@ const ShotSidebar = ({ cardOffsetTop }: SidebarProps): ReactElement => {
 
   const isShowEditionalIcons = cardOffsetTop ? cardOffsetTop < 50 : null;
 
-  const onClickLike = () => {
+  const onClickLike = useCallback(() => {
     setLikedShot(!isLikedShot);
-  };
+  }, [isLikedShot]);
 
   return (
     <section className={classes.shotSidebar}>
@@ -76,6 +76,7 @@ const ShotSidebar = ({ cardOffsetTop }: SidebarProps): ReactElement => {
               disableRipple
               aria-label="share"
               className={clsx(classes.iconButton, classes.iconShare)}
+              onClick={handleClickShareButton}
             >
               <ReplyRounded />
             </IconButton>
