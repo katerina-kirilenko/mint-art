@@ -12,6 +12,8 @@ export const useClasses = makeStyles(({ palette, breakpoints }: Theme) => ({
     alignItems: 'flex-end',
   },
   content: {
+    position: 'relative',
+    display: 'flex',
     paddingTop: '64px',
     paddingBottom: '42px',
     overflowY: 'scroll',

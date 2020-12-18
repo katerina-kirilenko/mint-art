@@ -1,4 +1,4 @@
-import React, { ReactElement, useCallback, useEffect } from 'react';
+import React, { ReactElement, useCallback, useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import parse from 'html-react-parser';
 import {
@@ -29,12 +29,17 @@ import { User, Shot } from 'store/userData/types';
 import Card from 'components/blocks/Card';
 import PaletteColors from './components/PaletteColors';
 import AvatarTooltip from './components/AvatarTooltip';
+import ShotSidebar from './components/ShotSidebar';
 import { ShotModalTypes } from './types';
 import { useClasses } from './styles';
 
 const ShotModal = ({ isOpen }: ShotModalTypes): ReactElement => {
   const classes = useClasses();
   const dispatch = useDispatch();
+
+  const mediaCard = useRef<HTMLImageElement>(null);
+
+  const [cardOffsetTop, setOffsetCardTop] = useState<number | null>(null);
 
   const { user } = useSelector(selectUserData);
   const { shots } = useSelector(selectUserShots);
@@ -60,6 +65,12 @@ const ShotModal = ({ isOpen }: ShotModalTypes): ReactElement => {
       });
   }, [shots]);
 
+  const onScrollModal = useCallback(() => {
+    if (mediaCard.current) {
+      setOffsetCardTop(mediaCard.current.getBoundingClientRect().top);
+    }
+  }, [mediaCard]);
+
   return (
     <Dialog
       fullScreen
@@ -75,8 +86,7 @@ const ShotModal = ({ isOpen }: ShotModalTypes): ReactElement => {
           <Close />
         </IconButton>
       </AppBar>
-
-      <Paper className={classes.content}>
+      <Paper className={classes.content} onScroll={onScrollModal}>
         <Container classes={{ root: classes.contentContainer }}>
           <Grid container className={classes.shotHeader}>
             <Tooltip
@@ -119,7 +129,13 @@ const ShotModal = ({ isOpen }: ShotModalTypes): ReactElement => {
           <Grid container direction="column">
             {!shot && <CircularProgress classes={{ root: classes.progress }} />}
             <section className={classes.shotMedia}>
-              <CardMedia component="img" alt={title} image={images?.hidpi} title={title} />
+              <CardMedia
+                ref={mediaCard}
+                component="img"
+                alt={title}
+                image={images?.hidpi}
+                title={title}
+              />
               <Grid className={classes.paletteContainer}>
                 <IconButton className={classes.paletteIcon}>
                   <PaletteIcon color="secondary" />
@@ -169,6 +185,8 @@ const ShotModal = ({ isOpen }: ShotModalTypes): ReactElement => {
             </Grid>
           </Grid>
         </Container>
+
+        <ShotSidebar cardOffsetTop={cardOffsetTop} />
       </Paper>
     </Dialog>
   );
