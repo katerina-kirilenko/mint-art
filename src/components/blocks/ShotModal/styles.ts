@@ -1,6 +1,7 @@
 import { fade, makeStyles, Theme } from '@material-ui/core/styles';
+import { DRAWER_WIDTH } from 'constants/themes';
 
-export const useClasses = makeStyles(({ palette, breakpoints }: Theme) => ({
+export const useClasses = makeStyles(({ palette, breakpoints, transitions }: Theme) => ({
   root: {
     backgroundColor: 'rgba(0, 0, 0, 0.5)',
   },
@@ -12,19 +13,40 @@ export const useClasses = makeStyles(({ palette, breakpoints }: Theme) => ({
     alignItems: 'flex-end',
   },
   content: {
-    position: 'relative',
     display: 'flex',
+    justifyContent: 'center',
     paddingTop: '64px',
     paddingBottom: '42px',
     overflowY: 'scroll',
-    flex: 1,
+    flexGrow: 1,
   },
   contentContainer: {
-    maxWidth: '98vh',
+    flexGrow: 1,
+    transition: transitions.create(['margin', 'padding'], {
+      easing: transitions.easing.sharp,
+      duration: '700ms',
+    }),
+    marginRight: -DRAWER_WIDTH,
+    marginLeft: '140px',
+    paddingRight: '140px',
+    paddingLeft: 0,
+  },
+  contentShift: {
+    transition: transitions.create(['margin', 'padding'], {
+      easing: transitions.easing.easeOut,
+      duration: '600ms',
+      delay: 400,
+    }),
+    marginRight: 0,
+    marginLeft: '40px',
+    paddingLeft: 0,
+    paddingRight: '40px',
   },
   shotHeader: {
     padding: '0 1rem',
     justifyContent: 'space-between',
+    maxWidth: '98vh',
+    margin: '0 auto',
   },
   avatarHeader: {
     marginRight: 16,
@@ -56,6 +78,7 @@ export const useClasses = makeStyles(({ palette, breakpoints }: Theme) => ({
       backgroundColor: fade(palette.text.primary, 0.05),
       fontSize: '0.9rem',
       padding: '8px 20px',
+
       '&:hover': {
         backgroundColor: fade(palette.text.primary, 0.1),
       },
@@ -68,13 +91,27 @@ export const useClasses = makeStyles(({ palette, breakpoints }: Theme) => ({
         marginRight: 4,
       },
     },
+    '& $likedButton': {
+      backgroundColor: fade(palette.primary.main, 0.1),
+      '&:hover': {
+        backgroundColor: fade(palette.primary.main, 0.3),
+      },
+    },
+  },
+  likedButton: {
+    color: palette.primary.main,
+    '& svg': {
+      fill: palette.primary.main,
+    },
   },
   shotDescription: {
-    marginTop: 56,
     padding: '0 1rem',
     fontSize: '20px',
     lineHeight: '32px',
     justifyContent: 'flex-start',
+    maxWidth: '98vh',
+    margin: '0 auto',
+    marginTop: 56,
   },
   progress: {
     marginTop: '35vh',
@@ -141,10 +178,12 @@ export const useClasses = makeStyles(({ palette, breakpoints }: Theme) => ({
     transition: 'opacity 200ms ease',
   },
   userDetails: {
-    marginTop: 70,
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
+    maxWidth: '100vh',
+    margin: '0 auto',
+    marginTop: 70,
   },
   avatarContainer: {
     marginBottom: '1rem',
@@ -170,8 +209,10 @@ export const useClasses = makeStyles(({ palette, breakpoints }: Theme) => ({
     marginTop: 10,
   },
   userSection: {
-    marginTop: 64,
     justifyContent: 'space-between',
+    maxWidth: '98vh',
+    margin: '0 auto',
+    marginTop: 64,
   },
   cardsContainer: {
     padding: '1.2rem 0',
@@ -202,6 +243,8 @@ export const useClasses = makeStyles(({ palette, breakpoints }: Theme) => ({
     },
   },
   otherWorks: {
+    maxWidth: '98vh',
+    margin: '0 auto',
     marginTop: 80,
   },
   widget: {
@@ -215,5 +258,11 @@ export const useClasses = makeStyles(({ palette, breakpoints }: Theme) => ({
   },
   widgetMargin: {
     margin: '10px 0',
+  },
+  shotSidebar: {
+    position: 'absolute',
+    top: 0,
+    right: 0,
+    height: '100%',
   },
 }));

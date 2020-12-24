@@ -21,8 +21,8 @@ const Card = ({ user, shot, styles, isFooterExist }: CardTypes): ReactElement =>
   const classes = useClasses();
   const dispatch = useDispatch();
 
-  const { name, avatar } = user as User;
-  const { shotId, title, images } = shot as Shot;
+  const { name, avatar } = user || ({} as User);
+  const { shotId, title, images } = shot || ({} as Shot);
 
   const handleOpenShotModal = useCallback(
     (id: string) => () => {

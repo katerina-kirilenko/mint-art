@@ -1,47 +1,58 @@
 import { makeStyles, Theme, fade } from '@material-ui/core/styles';
+import { DRAWER_WIDTH } from 'constants/themes';
 
 export const useClasses = makeStyles(({ palette, transitions }: Theme) => ({
-  shotSidebar: {
+  sidebarWrapper: {
+    width: DRAWER_WIDTH,
+    flexShrink: 0,
+  },
+  drawerPaper: {
+    width: DRAWER_WIDTH,
+    top: '52px',
+    right: 'auto',
+    height: 'calc(100% - 52px)',
+    overflowY: 'visible',
+  },
+  transitionDrawer: {
+    transitionDelay: '400ms !important',
+  },
+  contentOverflow: {
+    overflowY: 'auto',
+    padding: '30px 40px 120px',
+    '&::-webkit-scrollbar': {
+      display: 'none',
+    },
+    opacity: 1,
+    transition: transitions.create('opacity'),
+  },
+  hideContent: {
+    opacity: 0,
+  },
+  closeBtn: {
     position: 'absolute',
-    top: 0,
-    right: 0,
-    height: '100%',
-  },
-  avatar: {
-    marginBottom: '1rem',
-  },
-  toolbarWrapper: {
-    position: 'fixed',
-    height: '100%',
-    paddingTop: '64px',
-  },
-  toolbar: {
-    position: 'fixed',
-    right: 70,
-    width: 'auto',
-    flexDirection: 'column',
-    alignItems: 'center',
-  },
-  widget: {
-    backgroundColor: fade(palette.text.primary, 0.9),
-    border: `1px solid ${fade(palette.text.primary, 0.9)}`,
-    borderRadius: 4,
-    boxShadow: 'none',
-    padding: '6px 12px',
-  },
-  widgetArrow: {
-    color: fade(palette.text.primary, 0.9),
-    top: '8px !important',
-  },
-  tooltipTitle: {
-    fontSize: '14px',
-    fontWeight: 400,
-    color: palette.background.default,
+    top: '38px',
+    left: '-14px',
+    backgroundColor: palette.background.default,
+    border: `1px solid ${palette.grey[300]}`,
+    padding: '4px',
+    transition: transitions.create('all'),
+    '& svg': {
+      width: 18,
+      height: 18,
+      fill: palette.grey[500],
+    },
+    '&:hover': {
+      backgroundColor: palette.background.default,
+      borderColor: palette.grey[500],
+    },
+    '&:hover svg': {
+      fill: palette.grey[700],
+    },
   },
   iconButton: {
+    backgroundColor: palette.background.default,
     border: `1px solid ${palette.divider}`,
     borderRadius: 8,
-    marginBottom: '1rem',
     padding: '10px',
     fontSize: '14px',
     fontWeight: 500,
@@ -54,12 +65,15 @@ export const useClasses = makeStyles(({ palette, transitions }: Theme) => ({
       fill: fade(palette.text.primary, 0.9),
     },
     '&:hover': {
-      backgroundColor: 'transparent',
+      backgroundColor: palette.background.default,
       borderColor: fade(palette.grey[500], 0.5),
     },
     '&:active': {
       backgroundColor: palette.divider,
       borderColor: 'transparent',
+    },
+    '&:not(:last-child)': {
+      marginRight: '12px',
     },
   },
   likedButton: {
@@ -73,32 +87,61 @@ export const useClasses = makeStyles(({ palette, transitions }: Theme) => ({
       borderColor: 'transparent',
     },
   },
-  feedbackBadge: {
-    borderRadius: '50%',
-    backgroundColor: palette.background.paper,
-    border: `1px solid ${palette.divider}`,
-    boxShadow: `0px 2px 6px ${fade(palette.grey[700], 0.4)}`,
-    minWidth: '20px',
-    lineHeight: '18px',
-    fontSize: '12px',
-    padding: '0 4px',
-  },
   iconShare: {
     transform: 'scale(-1, 1)',
   },
-  editionalIcons: {
-    display: 'flex',
-    flexDirection: 'column',
-    animation: '$showIcons .8s ease-in-out',
+  iconDetails: {
+    lineHeight: '1rem',
+    '& span': {
+      color: palette.text.primary,
+      fontSize: '14px',
+    },
+    '& svg': {
+      marginRight: 7,
+    },
   },
-  '@keyframes showIcons': {
-    '0%': {
-      transform: 'translate(0, -100px)',
-      opacity: 0,
+  sidebarActions: {
+    justifyContent: 'space-between',
+    marginBottom: '40px',
+  },
+  comments: {
+    flexDirection: 'column',
+  },
+  comment: {
+    display: 'flex',
+    alignItems: 'start',
+    justifyContent: 'space-between',
+    marginBottom: '20px',
+    padding: 0,
+    '&:not(:last-child)': {
+      marginRight: '12px',
     },
-    '100%': {
-      transform: 'translate(0)',
-      opacity: 1,
+  },
+  commentContent: {
+    flex: '1 1 auto',
+  },
+  authorAvatar: {
+    width: 32,
+    height: 32,
+    marginRight: '12px',
+    '& svg': {
+      width: 22,
+      height: 22,
     },
+  },
+  commentAuthor: {
+    fontSize: '16px',
+    fontWeight: 600,
+  },
+  commentText: {
+    fontSize: '14px',
+    color: palette.text.primary,
+  },
+  commentData: {
+    fontSize: '12px',
+    color: palette.text.secondary,
+  },
+  commentMore: {
+    paddingLeft: 10,
   },
 }));

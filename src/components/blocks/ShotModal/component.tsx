@@ -1,4 +1,5 @@
 import React, { ReactElement, useCallback, useEffect, useRef, useState } from 'react';
+import clsx from 'clsx';
 import { useDispatch, useSelector } from 'react-redux';
 import parse from 'html-react-parser';
 import {
@@ -29,6 +30,7 @@ import { User, Shot } from 'store/userData/types';
 import Card from 'components/blocks/Card';
 import PaletteColors from './components/PaletteColors';
 import AvatarTooltip from './components/AvatarTooltip';
+import ShotToolbar from './components/ShotToolbar';
 import ShotSidebar from './components/ShotSidebar';
 import ShotShareModal from './components/ShotShareModal';
 import { ShotModalTypes } from './types';
@@ -41,13 +43,15 @@ const ShotModal = ({ isOpen }: ShotModalTypes): ReactElement => {
   const mediaCard = useRef<HTMLImageElement>(null);
 
   const [cardOffsetTop, setOffsetCardTop] = useState<number | null>(null);
+  const [isLikedShot, setLikedShot] = useState(false);
   const [isOpenShareModal, setOpenShareModal] = useState(false);
+  const [isVisibleOpenSidebar, setVisibleOpenSidebar] = useState(false);
 
   const { user } = useSelector(selectUserData);
   const { shots } = useSelector(selectUserShots);
   const { shot } = useSelector(selectShotData);
 
-  const { avatar, name } = user as User;
+  const { avatar, name } = user || ({} as User);
   const { title, images, description, url } = shot || ({} as Shot);
 
   useEffect(() => {
@@ -81,6 +85,18 @@ const ShotModal = ({ isOpen }: ShotModalTypes): ReactElement => {
     setOpenShareModal(false);
   }, [isOpenShareModal]);
 
+  const handleClickFeedback = useCallback(() => {
+    setVisibleOpenSidebar(true);
+  }, [isVisibleOpenSidebar]);
+
+  const handleClickLike = useCallback(() => {
+    setLikedShot(!isLikedShot);
+  }, [isLikedShot]);
+
+  const handleCloseSidebar = useCallback(() => {
+    setVisibleOpenSidebar(false);
+  }, [isVisibleOpenSidebar]);
+
   return (
     <>
       <Dialog
@@ -98,7 +114,13 @@ const ShotModal = ({ isOpen }: ShotModalTypes): ReactElement => {
           </IconButton>
         </AppBar>
         <Paper className={classes.content} onScroll={onScrollModal}>
-          <Container classes={{ root: classes.contentContainer }}>
+          <Container
+            classes={{
+              root: clsx(classes.contentContainer, {
+                [classes.contentShift]: isVisibleOpenSidebar,
+              }),
+            }}
+          >
             <Grid container className={classes.shotHeader}>
               <Tooltip
                 title={<AvatarTooltip />}
@@ -130,8 +152,12 @@ const ShotModal = ({ isOpen }: ShotModalTypes): ReactElement => {
                 </div>
               </div>
               <Grid container className={classes.headerButtons}>
-                <Button>Save</Button>
-                <Button>
+                <Button disableRipple>Save</Button>
+                <Button
+                  disableRipple
+                  onClick={handleClickLike}
+                  className={clsx({ [classes.likedButton]: isLikedShot })}
+                >
                   <Favorite />
                   Like
                 </Button>
@@ -197,9 +223,21 @@ const ShotModal = ({ isOpen }: ShotModalTypes): ReactElement => {
             </Grid>
           </Container>
 
-          <ShotSidebar
+          <ShotToolbar
             cardOffsetTop={cardOffsetTop}
+            isLikedShot={isLikedShot}
+            isVisibleOpenSidebar={isVisibleOpenSidebar}
+            handleClickFeedback={handleClickFeedback}
             handleClickShareButton={handleClickShareButton}
+            handleClickLike={handleClickLike}
+          />
+
+          <ShotSidebar
+            isLikedShot={isLikedShot}
+            isVisibleOpenSidebar={isVisibleOpenSidebar}
+            handleClickShareButton={handleClickShareButton}
+            handleCloseSidebar={handleCloseSidebar}
+            handleClickLike={handleClickLike}
           />
         </Paper>
       </Dialog>

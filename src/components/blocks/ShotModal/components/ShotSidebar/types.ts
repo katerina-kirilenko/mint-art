@@ -1,4 +1,7 @@
 export interface SidebarProps {
-  cardOffsetTop: number | null;
+  isVisibleOpenSidebar: boolean;
+  isLikedShot: boolean;
   handleClickShareButton: () => void;
+  handleCloseSidebar: () => void;
+  handleClickLike: () => void;
 }
