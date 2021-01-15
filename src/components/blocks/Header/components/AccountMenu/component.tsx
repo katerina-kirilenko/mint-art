@@ -1,7 +1,7 @@
 import React, { ReactElement, useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 import { MenuList } from '@material-ui/core';
-import { setIsAutorizedUser } from 'store/actions';
+import { setIsAutorizedUser } from 'store/auth';
 import { accountMenuLinks } from 'routes/accountMenuLinks';
 import MenuItemList from './components/MenuItemList';
 import MenuItemView from './components/MenuItemView';

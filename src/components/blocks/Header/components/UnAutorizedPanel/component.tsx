@@ -2,7 +2,7 @@ import React, { ReactElement, useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 import { Button, Grid, Link } from '@material-ui/core';
 import { Search } from '@material-ui/icons';
-import { setIsAutorizedUser } from 'store/actions';
+import { setIsAutorizedUser } from 'store/auth';
 import { useClasses } from './styles';
 
 const UnAutorizedPanel = (): ReactElement => {
