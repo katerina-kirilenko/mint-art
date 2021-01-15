@@ -13,7 +13,7 @@ export const StyledInput = withStyles(({ palette, transitions, spacing }: Theme)
       position: 'relative',
       backgroundColor: palette.background.paper,
       border: `1px solid ${palette.divider}`,
-      fontSize: '1rem',
+      fontSize: '0.9rem',
       padding: '10px 26px 10px 12px',
       transition: transitions.create(['border-color', 'box-shadow']),
       '&:hover': {

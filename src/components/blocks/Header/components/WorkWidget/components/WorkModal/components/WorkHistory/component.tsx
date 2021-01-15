@@ -44,10 +44,24 @@ const WorkHistory = (): ReactElement => {
           </Grid>
         </Grid>
         <Select
+          options={selectOptions}
           value={year}
           onChange={handleChangeYear}
-          options={selectOptions}
           className={clsx(classes.select, classes.maxWidth)}
+          MenuProps={{
+            anchorOrigin: {
+              vertical: 'bottom',
+              horizontal: 'left',
+            },
+            transformOrigin: {
+              vertical: 'top',
+              horizontal: 'left',
+            },
+            getContentAnchorEl: null,
+            PopoverClasses: {
+              root: classes.popover,
+            },
+          }}
         />
       </Container>
 

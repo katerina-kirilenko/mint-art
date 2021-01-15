@@ -61,4 +61,9 @@ export const useClasses = makeStyles(({ palette }: Theme) => ({
       marginRight: '2rem',
     },
   },
+  popover: {
+    '& li': {
+      fontSize: '0.8rem',
+    },
+  },
 }));

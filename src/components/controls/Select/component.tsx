@@ -1,10 +1,17 @@
 import React, { ReactElement } from 'react';
-import { MenuItem, Select as SelectMaterial } from '@material-ui/core';
+import { MenuItem, Select as SelectMaterial, SelectProps } from '@material-ui/core';
 import { ExpandMoreRounded } from '@material-ui/icons';
-import { SelectProps } from './types';
+import { SelectCustomProps } from './types';
 import { StyledInput } from './styles';
 
-const Select = ({ value, onChange, options, className }: SelectProps): ReactElement => {
+const Select = ({
+  value,
+  onChange,
+  options,
+  className,
+  MenuProps,
+  ...props
+}: SelectCustomProps & SelectProps): ReactElement => {
   return (
     <SelectMaterial
       variant="outlined"
@@ -14,6 +21,8 @@ const Select = ({ value, onChange, options, className }: SelectProps): ReactElem
       IconComponent={ExpandMoreRounded}
       input={<StyledInput />}
       className={className}
+      MenuProps={MenuProps}
+      {...props}
     >
       {options.map(({ value, label }) => {
         return (
