@@ -73,6 +73,7 @@ export const useClasses = makeStyles(({ palette, transitions }: Theme) => ({
   titleContent: {
     fontWeight: 700,
     lineHeight: '1.6',
+    flex: '1 1 auto',
   },
   popover: {
     marginTop: '5px',
@@ -96,5 +97,17 @@ export const useClasses = makeStyles(({ palette, transitions }: Theme) => ({
     width: '345px',
     flexDirection: 'column',
     marginBottom: '3rem',
+  },
+  showByContainer: {
+    width: 'auto',
+    flexWrap: 'nowrap',
+  },
+  inputShowBy: {
+    width: 40,
+    margin: '0 12px',
+    '& input': {
+      padding: '10px 6px',
+      textAlign: 'center',
+    },
   },
 }));

@@ -4,6 +4,7 @@ import fetchUserShots from 'api/fetchUserShots';
 import fetchUserShot from 'api/fetchUserShot';
 import { USER_DATA_REQUEST, USER_SHOTS_REQUEST, USER_SHOT_REQUEST } from 'constants/actions';
 import { selectShotModal } from './selectors';
+import { getSettings } from 'store/settings';
 import {
   userDataResponse,
   userDataFailed,
@@ -25,7 +26,8 @@ function* getUserData() {
 
 function* getUserShots() {
   try {
-    const shots = yield call(fetchUserShots);
+    const { currentPage, showBy } = yield select(getSettings);
+    const shots = yield call(fetchUserShots, currentPage, showBy);
 
     yield put(userShotsResponse(shots));
   } catch (error) {

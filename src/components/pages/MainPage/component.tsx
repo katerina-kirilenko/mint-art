@@ -11,10 +11,12 @@ import {
   userShotsRequest,
   selectShotModal,
 } from 'store/userData';
+import { getSettings, setShowBy } from 'store/settings';
 import Header from 'components/blocks/Header';
 import Card from 'components/blocks/Card';
 import ShotModal from 'components/blocks/ShotModal';
 import Select from 'components/controls/Select';
+import InputText from 'components/controls/InputText';
 import FiltersPanel from './components/FiltersPanel';
 import { selectFilterOptions, tagsFilter } from './options';
 import { useClasses } from './styles';
@@ -23,20 +25,22 @@ const MainPage = (): ReactElement => {
   const classes = useClasses();
   const dispatch = useDispatch();
 
-  const [selectFilter, setSelectFilter] = useState('');
-  const [activeTagFilter, setActiveTagFilter] = useState('all');
-  const [isFiltersPanelActive, setIsFiltersPanelActive] = useState(false);
-
   const { shots, isLoadingShots, errorShots } = useSelector(selectUserShots);
   const { user } = useSelector(selectUserData);
   const { isOpen } = useSelector(selectShotModal);
+  const { currentPage, showBy } = useSelector(getSettings);
+
+  const [showByInput, setShowByInput] = useState(showBy);
+  const [selectFilter, setSelectFilter] = useState('');
+  const [activeTagFilter, setActiveTagFilter] = useState('all');
+  const [isFiltersPanelActive, setIsFiltersPanelActive] = useState(false);
 
   const hasUserShots = !(isLoadingShots || errorShots);
 
   useEffect(() => {
     dispatch(userShotsRequest());
     dispatch(userDataRequest());
-  }, []);
+  }, [showBy]);
 
   const handleChangeSelectFilter = useCallback(
     (event: ChangeEvent<{ value: unknown }>) => {
@@ -55,6 +59,18 @@ const MainPage = (): ReactElement => {
   const handleClickActiveBtnFilter = useCallback(() => {
     setIsFiltersPanelActive(!isFiltersPanelActive);
   }, [isFiltersPanelActive]);
+
+  const handlerInputShowBy = useCallback(
+    (event) => {
+      setShowByInput(event.target.value);
+      console.log('showByInput', event.target.value);
+    },
+    [showByInput],
+  );
+
+  const handlerButtonShowBy = useCallback(() => {
+    dispatch(setShowBy(showByInput));
+  }, [showByInput]);
 
   return (
     <>
@@ -127,9 +143,25 @@ const MainPage = (): ReactElement => {
             </div>
 
             <Grid container className={classes.wrapContent}>
-              <Typography variant="subtitle1" className={classes.titleContent}>
-                Check out some of today’s popular shots
-              </Typography>
+              <Grid container>
+                <Typography variant="subtitle1" className={classes.titleContent}>
+                  Check out some of today’s popular shots
+                </Typography>
+                <Grid container className={classes.showByContainer}>
+                  <Typography variant="subtitle1" className={classes.titleContent}>
+                    Show by
+                  </Typography>
+                  <InputText
+                    className={classes.inputShowBy}
+                    value={showByInput}
+                    onChange={handlerInputShowBy}
+                  />
+                  <Button variant="outlined" onClick={handlerButtonShowBy}>
+                    Ok
+                  </Button>
+                </Grid>
+              </Grid>
+
               <Grid container className={classes.cardsContainer}>
                 {errorShots && <Alert severity="error">{errorShots}</Alert>}
                 {isLoadingShots && <CircularProgress />}

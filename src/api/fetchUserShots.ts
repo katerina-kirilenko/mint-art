@@ -5,13 +5,13 @@ const { REACT_APP_ACCESS_TOKEN } = process.env;
 
 const basePath = 'https://api.dribbble.com/v2/';
 
-const fetchUserShots = async (): Promise<Shot[]> => {
+const fetchUserShots = async (currentPage: number, showBy: string): Promise<Shot[]> => {
   const queryUserData = {
     url: basePath + 'user/shots',
     query: {
       access_token: REACT_APP_ACCESS_TOKEN,
-      page: 1,
-      per_page: 3,
+      page: currentPage,
+      per_page: showBy,
     },
   };
 
