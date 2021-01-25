@@ -48,7 +48,7 @@ const ShotModal = ({ isOpen }: ShotModalTypes): ReactElement => {
   const [isVisibleOpenSidebar, setVisibleOpenSidebar] = useState(false);
 
   const { user } = useSelector(selectUserData);
-  const { shots } = useSelector(selectUserShots);
+  const { shotsByPage } = useSelector(selectUserShots);
   const { shot } = useSelector(selectShotData);
 
   const { avatar, name } = user || ({} as User);
@@ -63,13 +63,13 @@ const ShotModal = ({ isOpen }: ShotModalTypes): ReactElement => {
   }, []);
 
   const renderShots = useCallback(() => {
-    return shots
+    return shotsByPage
       .filter((shot, idx) => idx < 4)
       .map((shot) => {
         const props = { user, shot };
         return <Card key={shot.shotId} {...props} styles={classes.cardContainer} />;
       });
-  }, [shots]);
+  }, [shotsByPage]);
 
   const onScrollModal = useCallback(() => {
     if (mediaCard.current) {

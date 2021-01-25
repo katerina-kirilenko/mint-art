@@ -4,14 +4,15 @@ import {
   SET_CURRENT_PAGE,
   SET_SHOW_BY,
 } from 'constants/actions';
+import { DEFAULT_SHOW_BY } from 'constants/api';
 import { LIGHT } from 'constants/themes';
 import { ActionTypes, SettingsStateTypes } from './types';
 
 const initialState = {
   availableForWork: false,
   currentTheme: LIGHT,
-  currentPage: 1,
-  showBy: '4',
+  currentPage: 0,
+  showBy: DEFAULT_SHOW_BY,
 };
 
 export default (state = initialState, action: ActionTypes): SettingsStateTypes => {

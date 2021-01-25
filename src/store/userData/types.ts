@@ -32,7 +32,7 @@ export interface User {
 }
 
 export interface UserShots {
-  shots: Shot[];
+  shotsByPage: Shot[];
   isLoadingShots: boolean;
   errorShots: string | null;
 }

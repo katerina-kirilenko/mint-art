@@ -6,6 +6,9 @@ export const useClasses = makeStyles(({ palette, transitions }: Theme) => ({
     flexDirection: 'column',
     alignItems: 'center',
     paddingBottom: '20px',
+    '& h4': {
+      textAlign: 'center',
+    },
   },
   container: {
     flex: '1 0 auto',
@@ -17,9 +20,9 @@ export const useClasses = makeStyles(({ palette, transitions }: Theme) => ({
     padding: '14px 0',
   },
   wrapContent: {
+    width: '100%',
     paddingTop: '26px',
-    flexDirection: 'column',
-    alignItems: 'stretch',
+    justifyContent: 'center',
   },
   buttonGroup: {
     width: 'auto',
@@ -90,11 +93,14 @@ export const useClasses = makeStyles(({ palette, transitions }: Theme) => ({
     },
   },
   cardsContainer: {
+    display: 'grid',
+    gridGap: 36,
+    gridTemplateColumns: 'repeat(auto-fill, minmax(270px, 1fr))',
     padding: '1.2rem 0',
-    justifyContent: 'space-between',
+    justifyItems: 'center',
   },
   cardContainer: {
-    width: '345px',
+    maxWidth: '345px',
     flexDirection: 'column',
     marginBottom: '3rem',
   },

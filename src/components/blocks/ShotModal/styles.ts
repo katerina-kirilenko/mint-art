@@ -117,12 +117,13 @@ export const useClasses = makeStyles(({ palette, breakpoints, transitions }: The
     marginTop: '35vh',
   },
   shotMedia: {
+    display: 'flex',
+    justifyContent: 'center',
     position: 'relative',
     maxWidth: '98vh',
     minWidth: '320px',
     width: '100%',
     margin: '40px 0 0',
-    background: palette.grey[500],
     borderRadius: 8,
     overflow: 'hidden',
     '&:hover': {

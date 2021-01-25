@@ -9,12 +9,12 @@ const AvatarTooltip = (): ReactElement => {
   const classes = useClasses();
 
   const { user } = useSelector(selectUserData);
-  const { shots } = useSelector(selectUserShots);
+  const { shotsByPage } = useSelector(selectUserShots);
 
   const { avatar, name, location } = user as User;
 
   const renderShots = useCallback(() => {
-    return shots
+    return shotsByPage
       .filter((shot, idx) => idx < 3)
       .map((shot) => {
         return (
@@ -23,7 +23,7 @@ const AvatarTooltip = (): ReactElement => {
           </div>
         );
       });
-  }, [shots]);
+  }, [shotsByPage]);
 
   return (
     <div className={classes.root}>

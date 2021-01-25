@@ -31,7 +31,6 @@ export const useClasses = makeStyles(({ palette, transitions }: Theme) => ({
     whiteSpace: 'nowrap',
   },
   cardImg: {
-    height: '260px',
     minWidth: '100%',
   },
   iconsGroup: {

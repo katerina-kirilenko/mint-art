@@ -27,9 +27,9 @@ function* getUserData() {
 function* getUserShots() {
   try {
     const { currentPage, showBy } = yield select(getSettings);
-    const shots = yield call(fetchUserShots, currentPage, showBy);
+    const shotsByPage = yield call(fetchUserShots, currentPage + 1, showBy);
 
-    yield put(userShotsResponse(shots));
+    yield put(userShotsResponse(shotsByPage));
   } catch (error) {
     yield put(userShotsFailed(`Something went wrong ${error}`));
   }

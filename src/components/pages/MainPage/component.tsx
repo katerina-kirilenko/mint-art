@@ -1,4 +1,11 @@
-import React, { ChangeEvent, ReactElement, useCallback, useEffect, useState } from 'react';
+import React, {
+  ChangeEvent,
+  KeyboardEvent,
+  ReactElement,
+  useCallback,
+  useEffect,
+  useState,
+} from 'react';
 import clsx from 'clsx';
 import { useDispatch, useSelector } from 'react-redux';
 import { Button, CircularProgress, Collapse, Grid, Typography } from '@material-ui/core';
@@ -11,21 +18,27 @@ import {
   userShotsRequest,
   selectShotModal,
 } from 'store/userData';
-import { getSettings, setShowBy } from 'store/settings';
+import { TOTAL_SHOT_COUNT } from 'constants/api';
+import { getSettings, setShowBy, setCurrentPage } from 'store/settings';
 import Header from 'components/blocks/Header';
 import Card from 'components/blocks/Card';
 import ShotModal from 'components/blocks/ShotModal';
+import Pagination from 'components/blocks/Pagination';
 import Select from 'components/controls/Select';
 import InputText from 'components/controls/InputText';
 import FiltersPanel from './components/FiltersPanel';
 import { selectFilterOptions, tagsFilter } from './options';
 import { useClasses } from './styles';
 
+interface dataType {
+  selected: number;
+}
+
 const MainPage = (): ReactElement => {
   const classes = useClasses();
   const dispatch = useDispatch();
 
-  const { shots, isLoadingShots, errorShots } = useSelector(selectUserShots);
+  const { shotsByPage, isLoadingShots, errorShots } = useSelector(selectUserShots);
   const { user } = useSelector(selectUserData);
   const { isOpen } = useSelector(selectShotModal);
   const { currentPage, showBy } = useSelector(getSettings);
@@ -37,10 +50,12 @@ const MainPage = (): ReactElement => {
 
   const hasUserShots = !(isLoadingShots || errorShots);
 
+  const pagesCount = Math.ceil(TOTAL_SHOT_COUNT / +showBy);
+
   useEffect(() => {
     dispatch(userShotsRequest());
     dispatch(userDataRequest());
-  }, [showBy]);
+  }, [showBy, currentPage]);
 
   const handleChangeSelectFilter = useCallback(
     (event: ChangeEvent<{ value: unknown }>) => {
@@ -63,14 +78,28 @@ const MainPage = (): ReactElement => {
   const handlerInputShowBy = useCallback(
     (event) => {
       setShowByInput(event.target.value);
-      console.log('showByInput', event.target.value);
     },
     [showByInput],
   );
 
   const handlerButtonShowBy = useCallback(() => {
-    dispatch(setShowBy(showByInput));
+    if (showByInput) {
+      dispatch(setShowBy(showByInput));
+    }
   }, [showByInput]);
+
+  const handleClickPage = useCallback(
+    (data: dataType): void => {
+      dispatch(setCurrentPage(data.selected));
+    },
+    [currentPage],
+  );
+
+  const handleKeyUp = (event: KeyboardEvent) => {
+    if (event.key === 'Enter' && showByInput) {
+      dispatch(setShowBy(showByInput));
+    }
+  };
 
   return (
     <>
@@ -142,7 +171,7 @@ const MainPage = (): ReactElement => {
               </Typography>
             </div>
 
-            <Grid container className={classes.wrapContent}>
+            <Grid className={classes.wrapContent}>
               <Grid container>
                 <Typography variant="subtitle1" className={classes.titleContent}>
                   Check out some of today’s popular shots
@@ -155,6 +184,7 @@ const MainPage = (): ReactElement => {
                     className={classes.inputShowBy}
                     value={showByInput}
                     onChange={handlerInputShowBy}
+                    onKeyUp={handleKeyUp}
                   />
                   <Button variant="outlined" onClick={handlerButtonShowBy}>
                     Ok
@@ -162,11 +192,11 @@ const MainPage = (): ReactElement => {
                 </Grid>
               </Grid>
 
-              <Grid container className={classes.cardsContainer}>
+              <Grid className={classes.cardsContainer}>
                 {errorShots && <Alert severity="error">{errorShots}</Alert>}
                 {isLoadingShots && <CircularProgress />}
                 {hasUserShots &&
-                  shots.map((shot) => {
+                  shotsByPage.map((shot) => {
                     const props = { user, shot };
 
                     return (
@@ -179,6 +209,14 @@ const MainPage = (): ReactElement => {
                     );
                   })}
               </Grid>
+
+              <Pagination
+                pageCount={pagesCount}
+                marginPagesDisplayed={2}
+                pageRangeDisplayed={5}
+                onPageChange={handleClickPage}
+                initialPage={currentPage}
+              />
             </Grid>
           </Grid>
         </Grid>

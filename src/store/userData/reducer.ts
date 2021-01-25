@@ -20,7 +20,7 @@ const initialState: UserStateTypes = {
     errorUser: null,
   },
   userShots: {
-    shots: [],
+    shotsByPage: [],
     isLoadingShots: false,
     errorShots: null,
   },
@@ -76,7 +76,7 @@ export default (state = initialState, action: ActionTypes): UserStateTypes => {
         ...state,
         userShots: {
           ...state.userShots,
-          shots: action.payload,
+          shotsByPage: action.payload,
           isLoadingShots: false,
         },
       };
