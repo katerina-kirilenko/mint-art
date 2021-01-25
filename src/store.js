@@ -3,16 +3,32 @@ import createSagaMiddleware from 'redux-saga';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
-import rootReducer from 'store/rootReducer';
-import saga from 'store/usersData/saga';
+import saga from 'store/userData/saga';
 
-const persistConfig = {
+import { combineReducers } from 'redux';
+import settingsReducer from 'store/settings/reducer';
+import authReducer from 'store/auth/reducer';
+import userReducer from 'store/userData/reducer';
+
+const rootPersistConfig = {
   key: 'root',
   storage,
-  whitelist: ['auth', 'settings'],
+  whitelist: ['settings', 'user'],
 };
 
-const persistedReducer = persistReducer(persistConfig, rootReducer);
+const authPersistConfig = {
+  key: 'auth',
+  storage,
+  whitelist: ['isAutorizedUser'],
+};
+
+const rootReducer = combineReducers({
+  settings: settingsReducer,
+  auth: persistReducer(authPersistConfig, authReducer),
+  user: userReducer,
+});
+
+const persistedReducer = persistReducer(rootPersistConfig, rootReducer);
 
 const sagaMiddleware = createSagaMiddleware();
 

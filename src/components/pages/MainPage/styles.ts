@@ -6,6 +6,9 @@ export const useClasses = makeStyles(({ palette, transitions }: Theme) => ({
     flexDirection: 'column',
     alignItems: 'center',
     paddingBottom: '20px',
+    '& h4': {
+      textAlign: 'center',
+    },
   },
   container: {
     flex: '1 0 auto',
@@ -17,9 +20,9 @@ export const useClasses = makeStyles(({ palette, transitions }: Theme) => ({
     padding: '14px 0',
   },
   wrapContent: {
+    width: '100%',
     paddingTop: '26px',
-    flexDirection: 'column',
-    alignItems: 'stretch',
+    justifyContent: 'center',
   },
   buttonGroup: {
     width: 'auto',
@@ -67,9 +70,13 @@ export const useClasses = makeStyles(({ palette, transitions }: Theme) => ({
     backgroundColor: fade(palette.text.primary, 0.1),
     borderColor: 'transparent',
   },
+  collapseContainer: {
+    width: '100%',
+  },
   titleContent: {
     fontWeight: 700,
     lineHeight: '1.6',
+    flex: '1 1 auto',
   },
   popover: {
     marginTop: '5px',
@@ -86,7 +93,27 @@ export const useClasses = makeStyles(({ palette, transitions }: Theme) => ({
     },
   },
   cardsContainer: {
+    display: 'grid',
+    gridGap: 36,
+    gridTemplateColumns: 'repeat(auto-fill, minmax(270px, 1fr))',
     padding: '1.2rem 0',
-    justifyContent: 'space-between',
+    justifyItems: 'center',
+  },
+  cardContainer: {
+    maxWidth: '345px',
+    flexDirection: 'column',
+    marginBottom: '3rem',
+  },
+  showByContainer: {
+    width: 'auto',
+    flexWrap: 'nowrap',
+  },
+  inputShowBy: {
+    width: 40,
+    margin: '0 12px',
+    '& input': {
+      padding: '10px 6px',
+      textAlign: 'center',
+    },
   },
 }));

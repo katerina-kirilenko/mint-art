@@ -1,10 +1,6 @@
 import { makeStyles, Theme } from '@material-ui/core/styles';
 
 export const useClasses = makeStyles(({ palette, transitions }: Theme) => ({
-  cardContainer: {
-    width: '345px',
-    flexDirection: 'column',
-  },
   card: {
     borderRadius: 8,
     border: 'none',
@@ -35,7 +31,6 @@ export const useClasses = makeStyles(({ palette, transitions }: Theme) => ({
     whiteSpace: 'nowrap',
   },
   cardImg: {
-    height: '260px',
     minWidth: '100%',
   },
   iconsGroup: {
